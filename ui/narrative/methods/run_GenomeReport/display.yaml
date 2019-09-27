@@ -1,10 +1,10 @@
 #
 # define display information
 #
-name: Method Name Here
+name: run_GenomeReport
 
 tooltip: |
-    Perform some kind of method
+    Generating a report on a givn genome/assembly
 
 screenshots: []
 
