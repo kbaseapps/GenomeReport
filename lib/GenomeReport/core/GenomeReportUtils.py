@@ -2,6 +2,7 @@ import os
 import uuid
 import errno
 import time
+import re
 
 from installed_clients.GenomeAnnotationAPIClient import GenomeAnnotationAPI
 """
@@ -66,17 +67,20 @@ class GenomeReportUtils:
                 "label": os.path.basename(filepath),
                 "description": message}
 
-    def _write_genome_js(self, js_template):  # , out_dir, dt_info):
+    def _write_genome_js(self, js_template, dataset=[], rows=[]):
         """
         _write_genome_js: Generate the js script that handles the data presentation and interaction
         """
-        log('start writing js script...')
+        log(f'start writing js script from {js_template}...')
         js_content = '<script>'
         with open(os.path.join(os.path.dirname(__file__), js_template)) as js_file:
             js_content += js_file.read()
         js_content += '</script>'
 
-        # log(f'The report js script is:\n {js_content}')
+        if dataset:
+            js_content = js_content.replace('["put your data here"]', str(dataset))
+        if rows:
+            js_content = js_content.replace('["put your rows here"]', str(rows))
         return js_content
 
     def _generate_genome_html(self, out_dir, genome_ref):
@@ -87,8 +91,13 @@ class GenomeReportUtils:
         genome_obj = self.genome_api.get_genome_v1(
             {"genomes": [{"ref": genome_ref}], 'downgrade': 0, 'no_data': 0, 'no_metadata': 0}
             )["genomes"][0]
+
         curr_func = len(genome_obj["data"]["features"])
-        # log(f'feature_counts: {genome_obj['data']['feature_counts']}, CDS count={curr_func}')
+
+        g_feature_counts = genome_obj['data']['feature_counts']
+        dataset = [{"name": p[0], "value": p[1]} for p in g_feature_counts.items()]
+        rows = [[p[0], p[1]] for p in g_feature_counts.items()]
+        rows.insert(0, ['feature name', 'feature counts'])
 
         genome_name = genome_obj['info'][1]
         report_title = f'Genome report on {genome_name}'
@@ -99,7 +108,8 @@ class GenomeReportUtils:
         header_content = f'<header><h3>Genome Report-{genome_name}</h3></header>'
         js_content1 = self._write_genome_js('line_chart.js')
         js_content2 = self._write_genome_js('pie_chart.js')
-        js_content3 = self._write_genome_js('bar_chart_anim.js')
+        js_content3 = self._write_genome_js('bar_chart_anim.js', dataset=dataset)
+        js_content4 = self._write_genome_js('table_chart.js', rows=rows)
         summ_content = (
             f'<div id="brief_description">\n'
             f'Genome {genome_name} was created by {genome_obj["creator"]} on {genome_obj["created"]}.'
@@ -118,6 +128,7 @@ class GenomeReportUtils:
         js_placeholder1 = '<script src="javascript_placeholder1.js"></script>'
         js_placeholder2 = '<script src="javascript_placeholder2.js"></script>'
         js_placeholder3 = '<script src="javascript_placeholder3.js"></script>'
+        js_placeholder4 = '<script src="javascript_placeholder4.js"></script>'
         footer_placeholder = '<div id="report_footer_placeholder"></div>'
 
         with open(report_file_path, 'w') as report_file:
@@ -129,6 +140,7 @@ class GenomeReportUtils:
                 report_template = report_template.replace(js_placeholder1, js_content1)
                 report_template = report_template.replace(js_placeholder2, js_content2)
                 report_template = report_template.replace(js_placeholder3, js_content3)
+                report_template = report_template.replace(js_placeholder4, js_content4)
                 report_template = report_template.replace(footer_placeholder,
                                                           f'<div>{footer_content}</div>')
                 report_file.write(report_template)
