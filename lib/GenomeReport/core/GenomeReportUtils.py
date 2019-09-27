@@ -144,7 +144,7 @@ class GenomeReportUtils:
                 report_template = report_template.replace(footer_placeholder,
                                                           f'<div>{footer_content}</div>')
                 report_file.write(report_template)
-                log(f'The report with js script is:\n {report_template}')
+                # log(f'The report with js script is:\n {report_template}')
 
         html_report.append({'path': report_file_path,
                             'name': os.path.basename(report_file_path),
@@ -161,7 +161,7 @@ class GenomeReportUtils:
         self.output_workspace = params['output_workspace']
         genome_ref = params['object_ref']
 
-        if params['annotated_by']:
+        if params.get('annotated_by', None):
             ann_by = params['annotated_by']
         else:
             ann_by = ''
