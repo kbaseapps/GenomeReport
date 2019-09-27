@@ -1,0 +1,34 @@
+#
+# define display information
+#
+name: Method Name Here
+
+tooltip: |
+    Perform some kind of method
+
+screenshots: []
+
+icon: icon.png
+
+#
+# define a set of similar apps that might be useful to the user
+#
+suggestions:
+    apps:
+        related:
+            [ProkkaAnnotation.annotate_contigs, ProkkaAnnotation.annotate_metagenome]
+        next:
+            []
+
+#
+# Configure the display and description of parameters
+#
+parameters :
+    object_ref :
+        ui-name : |
+            Assembly or Genome
+        short-hint : |
+            Assembly object (set of dna contigs) or Genome object (set of features with Ontology and Function)
+
+description : |
+    <p></p>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <title>Genome Report</title>
+    <link rel=stylesheet type=text/css href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css' media='all'>
+    <style>
+        body {
+            padding: 10px;
+            font-size: 12px;
+        }
+        header { padding-bottom: .5in; }
+        section { margin-bottom: .5in; }
+
+        .well {
+            padding-top: 0px;
+            padding-bottom: 0px;
+            width: 500px;
+        }
+        table {
+            font-size: 10px;
+            line-height: 10px;
+        }
+        td, th {
+            width: 33.3%;
+        }
+        label {
+            margin-bottom: 10px;
+        }
+        .chart {
+            background-color: #C7D9D9;
+        }
+        .svg-container {
+            background-color: #FFC988;
+            }
+
+        .bar {
+            fill: steelblue;
+        }
+
+        .highlight {
+            fill: orange;
+        }
+
+        .axis text {
+            font: 10px sans-serif;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+
+        .x.axis path {
+            display: none;
+        }
+    </style>
+  </head>
+  <body>
+    <header><h3 id="report_header_placeholder"></h3></header>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!--
+       ## Summary
+     -->
+    <section id="summary">
+        <h2>Summary</h2>
+        <div id="brief_description"></div>
+    </section>
+
+    <section id="figure1">
+        <h3>Figure 1 (and figure caption)</h3>
+        <svg id="chart1" class="chart" width="500" height="400"></svg>
+        <script src="javascript_placeholder1.js"></script>
+    </section>
+    
+    <section id="figure2">
+        <h3>Figure 2 (and figure caption)</h3>
+        <svg id="chart2" class="chart" width="500" height="400"></svg>
+        <script src="javascript_placeholder2.js"></script>
+    </section>
+    
+    <section id="figure3">
+        <h3>Figure 3 (and figure caption)</h3>
+        <svg id="chart3" class="chart" width="500" height="400"></svg>
+        <script src="javascript_placeholder3.js"></script>
+    </section>
+
+    <section id="footer">
+        <div id="report_footer_placeholder"></div>
+    </section>
+  </body>
+</html>
