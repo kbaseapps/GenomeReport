@@ -1,0 +1,30 @@
+.chart {
+    background-color: #C7D9D9;
+    }
+ 
+.svg-container {
+      background-color: #FFC988;
+      }
+
+.bar {
+    fill: steelblue;
+}
+
+.highlight {
+    fill: orange;
+}
+
+.axis text {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    troke: #000;
+    shape-rendering: crispEdges;
+}
+
+.x.axis path {
+    display: none;
+}

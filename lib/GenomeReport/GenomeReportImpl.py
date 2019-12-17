@@ -47,7 +47,6 @@ A KBase module to specifically handle reporting on genomes
         #END_CONSTRUCTOR
         pass
 
-
     def create_genome_report(self, ctx, params):
         """
         :param params: instance of type "GenomeReportParams" (Required
@@ -112,6 +111,7 @@ A KBase module to specifically handle reporting on genomes
                              'output is not type dict as required.')
         # return the results
         return [output]
+
     def status(self, ctx):
         #BEGIN_STATUS
         returnVal = {'state': "OK",

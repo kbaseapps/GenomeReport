@@ -65,6 +65,8 @@ class GenomeReportTest(unittest.TestCase):
         #
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methods
+        #
+        # Note: The object_ref used here has to be a ref to an object in CI
         ret = self.serviceImpl.create_genome_report(self.ctx, {'output_workspace': self.wsName,
                                                                'object_ref': '15792/185774/1',
                                                                'annotated_by': 'Prokka'})

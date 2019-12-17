@@ -4,7 +4,7 @@
 name: run_GenomeReport
 
 tooltip: |
-    Generating a report on a givn genome/assembly
+    Generating a report on a given genome/assembly
 
 screenshots: []
 
