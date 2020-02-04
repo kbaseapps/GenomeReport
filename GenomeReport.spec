@@ -33,7 +33,7 @@ module GenomeReport {
     } file_link;
 
     typedef structure {
-        int currnet_functions;
+        int current_functions;
         int new_funcgtions;
         int found_functions;
         int new_ontologies;
