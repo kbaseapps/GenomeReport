@@ -82,7 +82,7 @@ A KBase module to specifically handle reporting on genomes
            parameter "ontology_summary_fp" of type "summary_filepath" (A
            string pointing to the genome function/ontology summary file
            path), parameter "stats" of type "genome_stats" -> structure:
-           parameter "currnet_functions" of Long, parameter "new_funcgtions"
+           parameter "current_functions" of Long, parameter "new_funcgtions"
            of Long, parameter "found_functions" of Long, parameter
            "new_ontologies" of Long, parameter "report_message" of String,
            parameter "warnings" of list of String, parameter "file_links" of
